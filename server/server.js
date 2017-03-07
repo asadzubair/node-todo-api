@@ -21,6 +21,16 @@ app.post('/todos', (req, res) => {
     })
 })
 
+app.get('/todos', (req, res) => {
+    Todo.find().then( (results) => {
+        res.send({
+            todos: results
+        })
+    }, (err) => {
+        console.log('unable to retrieve todos - ', err.message);
+    })
+})
+
 app.listen(3000, () => {
     console.log('started on port 3000');
 })
